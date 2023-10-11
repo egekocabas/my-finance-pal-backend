@@ -14,6 +14,14 @@ export const findBudgetSummary: BudgetSummaryRepository["find"] = async (
   }
 };
 
+export const insertBudgetSummary: BudgetSummaryRepository["insert"] = async (
+    budgetSummary,
+) => {
+  const entity = BudgetSummaryEntityConverter.toEntity(budgetSummary);
+  const insertedSummery = await new BudgetSummaryModel(entity).save();
+  return BudgetSummaryEntityConverter.toDomain(insertedSummery);
+}
+
 const BudgetSummaryMongoRepository = (): BudgetSummaryRepository => ({
   // TODO 2.4. - add the "insertBudgetSummary" function to the repository
   find: findBudgetSummary,

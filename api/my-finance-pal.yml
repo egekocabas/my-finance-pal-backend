@@ -11,6 +11,23 @@ tags:
 paths:
   /budgets:
     # TODO 1. add a new endpoint for creating budgets
+    post:
+      tags:
+        - budgets
+      description: Create a new budget
+      operationId: createBudget
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewBudget"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Budget"
     get:
       tags:
         - budgets
